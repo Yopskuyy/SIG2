@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Karang_Asam_Ulu;
+use App\Models\KarangAsamUlu;
 
 class CreateKarang_Asam_UluRequest extends FormRequest
 {
@@ -24,6 +24,6 @@ class CreateKarang_Asam_UluRequest extends FormRequest
      */
     public function rules()
     {
-        return Karang_Asam_Ulu::$rules;
+        return KarangAsamUlu::$rules;
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $warna_poligon
  * @property string $deskripsi
  */
-class Karang_Asam_Ulu extends Model
+class KarangAsamUlu extends Model
 {
     use SoftDeletes;
 

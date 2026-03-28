@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateKarang_Asam_UluRequest;
 use App\Http\Requests\UpdateKarang_Asam_UluRequest;
-use App\Repositories\Karang_Asam_UluRepository;
+use App\Repositories\KarangAsamUluRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -12,10 +12,10 @@ use Response;
 
 class Karang_Asam_UluController extends AppBaseController
 {
-    /** @var Karang_Asam_UluRepository $karangAsamUluRepository*/
+    /** @var KarangAsamUluRepository $karangAsamUluRepository*/
     private $karangAsamUluRepository;
 
-    public function __construct(Karang_Asam_UluRepository $karangAsamUluRepo)
+    public function __construct(KarangAsamUluRepository $karangAsamUluRepo)
     {
         $this->karangAsamUluRepository = $karangAsamUluRepo;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Karang_Asam_Ulu;
+use App\Models\KarangAsamUlu;
 use App\Repositories\BaseRepository;
 
 /**
@@ -11,7 +11,7 @@ use App\Repositories\BaseRepository;
  * @version March 3, 2026, 3:10 am UTC
 */
 
-class Karang_Asam_UluRepository extends BaseRepository
+class KarangAsamUluRepository extends BaseRepository
 {
     /**
      * @var array
@@ -38,6 +38,6 @@ class Karang_Asam_UluRepository extends BaseRepository
      **/
     public function model()
     {
-        return Karang_Asam_Ulu::class;
+        return KarangAsamUlu::class;
     }
 }

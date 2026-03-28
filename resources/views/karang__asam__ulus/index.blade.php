@@ -94,23 +94,23 @@
                         // Masukkan layer ke dalam FeatureGroup
                         allPolygons.addLayer(layer);
 
-                        var titikTengah = layer.getBounds().getCenter();
+                        // var titikTengah = layer.getBounds().getCenter();
 
-                        var marker = L.marker(titikTengah,{
-                            title: item.Nama_lokasi
-                        });
+                        // var marker = L.marker(titikTengah,{
+                        //     title: item.Nama_lokasi
+                        // });
 
-                        marker.feature = {
-                            type: 'Feature',
-                            properties: {
-                                nama_lokasi: item.Nama_lokasi, // Kata kunci yang akan dicari
-                                deskripsi: item.deskripsi
-                            }
-                        }
+                        // marker.feature = {
+                        //     type: 'Feature',
+                        //     properties: {
+                        //         nama_lokasi: item.Nama_lokasi, // Kata kunci yang akan dicari
+                        //         deskripsi: item.deskripsi
+                        //     }
+                        // }
                         
-                        marker.bindPopup("<b>" + item.Nama_lokasi + "</b><br>" + (item.deskripsi || ""));
+                        // marker.bindPopup("<b>" + item.Nama_lokasi + "</b><br>" + (item.deskripsi || ""));
 
-                        allPolygons.addLayer(marker);
+                        // allPolygons.addLayer(marker);
 
                     } catch (e) {
                         console.error("Format JSON tidak valid untuk ID: " + item.id, e);
@@ -122,19 +122,31 @@
                 map.fitBounds(allPolygons.getBounds());
             }
 
+
+            // 1. Kita buat dulu bentuk penanda untuk hasil pencariannya (Lingkaran Merah)
+            var penandaPencarian = L.circleMarker([0,0], {
+                radius: 15,
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.6
+            });
+
             // 4. Inisialisasi Fitur Leaflet Search
             var searchControl = new L.Control.Search({
                 layer: allPolygons,             // Target pencarian adalah grup poligon kita
-                propertyName: 'nama_lokasi',   // Sesuai dengan nama properti yang kita buat di langkah ke-3
-                marker: false,                  // Set false karena kita tidak ingin menampilkan ikon marker tambahan
-                moveToLocation: function(latlng, title, map) {
-                    // Animasi zoom saat lokasi ditemukan
-                    map.flyTo(latlng, 14); 
-                }
+                propertyName: 'nama_wilayah',   // Sesuai dengan nama properti yang kita buat di langkah ke-3
+                marker: penandaPencarian,                  // Set false karena kita tidak ingin menampilkan ikon marker tambahan
+                 moveToLocation: function(latlng, title, map) {
+                //     // Animasi zoom saat lokasi ditemukan
+                //     // map.flyTo(latlng, 14); 
+                 }
             });
 
             // Opsional: Buka popup otomatis ketika poligon diklik dari hasil pencarian
             searchControl.on('search:locationfound', function(e) {
+
+                map.fitBounds(e.layer.getBounds(), { padding: [50, 50], maxZoom: 19 });
+
                 if (e.layer._popup) {
                     e.layer.openPopup();
                 }
